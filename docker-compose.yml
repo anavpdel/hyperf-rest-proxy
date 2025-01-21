@@ -1,0 +1,26 @@
+version: '3'
+services:
+  kafka-rest-proxy:
+    container_name: kafka-rest-proxy
+    image: kafka-rest-proxy
+    build:
+      context: .
+    env_file: 
+      - .env
+    volumes:
+      - ./:/opt/www
+      - ./ssl:/ssl
+      - ./entrypoint.sh:/usr/local/bin/entrypoint.sh
+    ports:
+      - 9501:9501
+    stdin_open: true
+    tty: true
+    environment:
+      - APP_ENV=dev
+      - SCAN_CACHEABLE=false
+    networks:
+      - phpdev
+networks:
+  phpdev:
+    name: phpdev_network
+    external: true
