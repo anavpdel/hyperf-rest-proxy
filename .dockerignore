@@ -4,3 +4,6 @@
 !config/
 !composer.*
 !entrypoint.sh
+!ssl/
+.env
+!.env.example

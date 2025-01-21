@@ -52,6 +52,10 @@ RUN composer install --no-dev --no-scripts
 COPY . /opt/www
 # RUN composer install --no-dev -o && php bin/hyperf.php
 
+# make sure ssl folder is empty in the built image  
+RUN rm -rf ssl && mkdir ssl
+COPY .env.example .env
+
 EXPOSE 9501
 
 # Copy the entrypoint script
